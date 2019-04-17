@@ -210,9 +210,8 @@ for Iter = 1:15
             clear x
             clear y
             
-            % use this trial's data to predict trial condition using the
-            % trained classifier
             x=trialFR{iStep}(:,iTrial,1)';
+            %y=trial_FR{i_step}(:,iTrial,2)';
             y=TrialIDLoad(iTrial);
             svm_test=array2table(x);
             yfit = trainedClassifier.predictFcn(svm_test);
@@ -234,8 +233,6 @@ for Iter = 1:15
         clear y
         %%% chance level; shuffle the class labels
         for iTrialCon=1:numTrialsHit
-            
-            % find all trials that aren't the target trial
             tempTrials= 1:numTrialsHit;
             newTrials=tempTrials(tempTrials~=iTrialCon);
             
@@ -252,8 +249,6 @@ for Iter = 1:15
             clear x
             clear y
             
-            % use this trial's data to predict trial condition using the
-            % trained classifier
             x=trialFR{iStep}(:,iTrialCon,1)';
             y=TrialIDLoad(iTrialCon);
             svmTestCon=array2table(x);
